@@ -20,12 +20,9 @@ class Image extends TimberImage {
 	 * Creates a new SockmanImage object.
 	 *
 	 * @param int|string $iid The image id.
-	 * @param object     $layout The sockman layout object.
 	 */
-	function __construct( $iid, $layout ) {
+	function __construct( $iid ) {
 		parent::__construct( $iid );
-
-		$this->layout = $layout;
 	}
 
 	/**
@@ -203,23 +200,6 @@ class Image extends TimberImage {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the sizes.
-	 *
-	 * @param array $sizes The array of sizes. Each size is an array of span and cols (in that order).
-	 * @return $sizes
-	 */
-	public function sizes( $sizes ) {
-		$span_at_max = $sizes[0][0];
-		$max_size = $this->layout->max_size( $span_at_max );
-
-		$flexible_sizes = implode(', ', array_map( function ( $size ) {
-			return $this->layout->flexible_width( $size );
-		}, $sizes ) );
-
-		return $max_size . ', ' . $flexible_sizes;
 	}
 
 	/**
