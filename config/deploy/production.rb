@@ -7,10 +7,10 @@ set :deploy_to, -> { "/var/www/vhosts/#{fetch(:application)}/#{fetch(:stage)}" }
 set :keep_releases, 3
 
 # update to https / correct URL.
-set :wp_home, -> { "http://images.dalestillman.com" }
+set :wp_home, -> { "http://img.dalestillman.com" }
 set :db_name, -> { "#{fetch(:application)}_production" }
 
-set :nginx_domain, -> { "images.dalestillman.com" }
+set :nginx_domain, -> { "img.dalestillman.com" }
 
 
 
