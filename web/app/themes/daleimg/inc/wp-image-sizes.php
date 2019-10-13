@@ -7,9 +7,27 @@
  * @package Sockman
  */
 
-$sockman = $this;
-$layout = $sockman->layout;
+$sockman       = $this;
+$layout        = $sockman->layout;
 $content_width = $layout->content_width();
+
+
+/**
+ * Only generate the default image sizes so that the dashboard /
+ * media library can be fast.
+ */
+add_filter(
+	'intermediate_image_sizes_advanced',
+	function( $sizes ) {
+		$s = $sizes;
+		return array(
+			'thumbnail'    => $sizes['thumbnail'],
+			'medium'       => $sizes['medium'],
+			'medium_large' => $sizes['medium_large'],
+			'large'        => $sizes['large'],
+		);
+	}
+);
 
 
 
