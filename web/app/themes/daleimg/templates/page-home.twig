@@ -5,7 +5,7 @@
 	<div class="o-wrapper u-padding-vertical-large">
 		<div class="s-content">
 			{% for image in images %}
-				<img src="{{image.src('thumbnail')}}" alt={{image.alt}} >
+				<img src="{{image.src('thumbnail')}}" alt="{{image.alt}}" loading="lazy">
 			{% endfor %}
 		</div>
 	</div>
