@@ -2,7 +2,7 @@ require_relative 'nginx'
 require_relative 'setup'
 
 set :application, 'daleimg'
-set :repo_url, 'git@bitbucket.org:adozeneggs/daleimg_wordpress.git'
+set :repo_url, 'git@github.com:dalemartyn/daleimg.git'
 
 
 set :ssh_options, {
