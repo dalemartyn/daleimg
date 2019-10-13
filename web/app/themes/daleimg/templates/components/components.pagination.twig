@@ -1,0 +1,8 @@
+{% if posts.pagination.next or posts.pagination.prev %}
+
+<div class="o-wrapper-wide">
+	<div class="c-pagination u-margin-bottom-large u-padding-horizontal u-padding-bottom">
+		{{ function('the_posts_pagination', { 'prev_text': 'Prev' } ) }}
+	</div>
+</div>
+{% endif %}

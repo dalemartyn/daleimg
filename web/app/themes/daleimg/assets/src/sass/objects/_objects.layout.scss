@@ -1,0 +1,131 @@
+/* ==========================================================================
+   #LAYOUT
+   ========================================================================== */
+
+/*
+ * Example usage:
+ *
+ *   <div class="o-wrapper">
+ *     <div class="o-layout">
+ *       <div class="o-layout__cell o-layout__cell--span-6"></div>
+ *       <div class="o-layout__cell o-layout__cell--span-4"></div>
+ *       <div class="o-layout__cell o-layout__cell--span-2  o-layout__cell--span-4@c8"></div>
+ *     </div>
+ *   </div>
+ */
+
+.o-layout {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  margin-left: calc(var(--gutter) * -1);
+}
+
+.o-layout--center {
+  justify-content: center;
+}
+
+
+
+  .o-layout__cell {
+    margin-left: var(--gutter);
+    width: calc(100% - var(--gutter));
+  }
+
+
+
+
+    // Select the upper breakpoint
+    $upper-breakpoint: nth(map-keys($sockman-layout-columns), length($sockman-layout-columns));
+
+    @each $grid_size in map-keys($sockman-layout-columns) {
+      @include sockman-layout-media-query_($grid_size) {
+        $gutter: map-get($sockman-layout-default-gutter, $grid_size);
+        $num_cols: map-get($sockman-layout-columns, $grid_size);
+
+        /**
+        * Generate default classes at all breakpoints.
+        */
+        @for $span from 1 through map-get($sockman-layout-columns, $grid_size) {
+          $percent: percentage($span / $num_cols);
+
+          @if $percent > 100% {
+            $percent: 100%;
+          }
+
+          .o-layout__cell--span-#{$span} {
+            width: calc(#{$percent} - var(--gutter));
+          }
+
+          .o-layout__cell--push-#{$span} {
+            margin-left: calc(#{$percent} + var(--gutter));
+          }
+
+        }
+
+        /**
+         * Generate all the --span@ classes. Smallest grid size doesn't have @c4 class suffix. Use naked class instead.
+         */
+        @for $span from 1 through map-get($sockman-layout-columns, $grid_size) {
+
+          /**
+           * If we are on the first column size (from minimum viewport).
+           * we dont bother with the spans e.g. ( --span@c4 ) when we can use the default.
+           */
+          @if $grid_size != null {
+            $size-name: map-get($sockman-layout-breakpoint-names, $grid_size);
+            $percent: percentage($span / $num_cols);
+
+            @if $percent > 100% {
+              $percent: 100%;
+            }
+
+            .o-layout__cell--span-#{$span}#{$sockman-breakpoint-separator}#{$size-name} {
+              width: calc(#{$percent} - var(--gutter));
+            }
+
+            .o-layout__cell--push-#{$span}#{$sockman-breakpoint-separator}#{$size-name} {
+              margin-left: calc(#{$percent} + var(--gutter));
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+  /**
+   * Order mixins. as many as there are columns.
+   */
+
+  @for $order from 1 through map-get($sockman-layout-columns, $upper-breakpoint) {
+
+    .o-layout__cell--order-#{$order} {
+      order: $order;
+    }
+  }
+
+
+
+
+
+  /**
+   * Alignment helpers.
+   */
+
+  .o-layout__cell--align-top {
+    align-self: flex-start;
+  }
+
+  .o-layout__cell--align-middle {
+    align-self: center;
+  }
+
+  .o-layout__cell--align-bottom {
+    align-self: flex-end;
+  }
+
+  .o-layout__cell--align-stretch {
+    align-self: stretch;
+  }

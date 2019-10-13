@@ -1,0 +1,19 @@
+///* ========================================================================
+//   #ASSETS
+//   ======================================================================== */
+
+/**
+ * Helpers for generating asset urls.
+ */
+
+@function sockman-img-url($filename) {
+  @return url("/app/themes/#{$sockman-global-themename}/assets/dist/img/#{$filename}");
+}
+
+@function sockman-svg-url($filename) {
+  @return url("/app/themes/#{$sockman-global-themename}/assets/dist/svg/#{$filename}");
+}
+
+@function sockman-font-url($filename) {
+  @return url("/app/themes/#{$sockman-global-themename}/assets/dist/fonts/#{$filename}");
+}

@@ -1,0 +1,35 @@
+/* ==========================================================================
+   #SITE-LOGO
+   ========================================================================== */
+
+.c-site-logo {
+  margin: 0;
+
+  @include mq($until: w960) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+  .c-site-logo__link {
+    display: inline-flex;
+
+    > svg {
+      @include mq($until: w600) {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+
+  .c-site-logo__svg {
+    $site-logo-intrinsic-width: 192px;
+    $site-logo-intrinsic-height: 192px;
+    background-image: sockman-svg-url("site-logo.svg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: $site-logo-intrinsic-width;
+    height: $site-logo-intrinsic-height;
+  }

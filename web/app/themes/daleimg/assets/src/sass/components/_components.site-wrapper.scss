@@ -1,0 +1,48 @@
+/* ==========================================================================
+   #SITE-WRAPPER
+   ========================================================================== */
+
+/**
+ * Control the layout of the element that wraps the whole site.
+ *
+ * This will make sure that the wp-admin bar doesn't overlap our title bar,
+ * and also make sure that the footer stays glued to the bottom on large screens.
+ *
+ * use the `.u-margin-top-auto helper` on the footer for it to stick to bottom.
+ *
+ *
+ * Magic numbers used for the height of the WordPress admin bar.
+ * This must be used in conjunction with:
+ *   add_theme_support( 'admin-bar', array( 'callback' => '__return_false' ) );
+ *
+ *
+ * Uses @supports to disable the flexbox layout on IE11 where it is unreliable.
+ *
+ */
+
+ .c-site-wrapper {
+  position: relative;
+
+  @supports (display: flex) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .admin-bar > & {
+      margin-top: 32px;
+      min-height: calc(100vh - 32px);
+
+      // when WordPress changes layout
+      @media screen and (max-width: 782px) {
+        margin-top: 46px;
+        min-height: calc(100vh - 46px);
+      }
+    }
+  }
+}
+
+// .c-site-wrapper__header {}
+
+.c-site-wrapper__footer {
+  margin-top: auto;
+}

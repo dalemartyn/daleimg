@@ -1,0 +1,128 @@
+/* ==========================================================================
+   #TYPOGRAPHY
+   ========================================================================== */
+
+/**
+ * All the settings for the responsive typography.
+ */
+
+
+$sockman-font-size-base: 13px;
+
+$sockman-type-styles: (
+  'h1': (
+    font-size: 45px,
+    line-height: 54px,
+    font-weight: light,
+    letter-spacing: -.025
+  ),
+  'h2': (
+    font-size: 38px,
+    line-height: 50px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'h3': (
+    font-size: 30px,
+    line-height: 34px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'h4': (
+    font-size: 24px,
+    line-height: 30px,
+    font-weight: semibold,
+    letter-spacing: normal
+  ),
+  'b1': (
+    font-size: 22px,
+    line-height: 30px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'b2': (
+    font-size: 20px,
+    line-height: 28px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'b2b': (
+    font-size: 20px,
+    line-height: 28px,
+    font-weight: bold,
+    letter-spacing: normal
+  ),
+  'b3': (
+    font-size: 18px,
+    line-height: 22px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'b3b': (
+    font-size: 18px,
+    line-height: 22px,
+    font-weight: bold,
+    letter-spacing: normal
+  ),
+  'button': (
+    font-size: 18px,
+    line-height: 20px,
+    font-weight: regular,
+    letter-spacing: .03em
+  ),
+  'smalltext': (
+    font-size: 13px,
+    line-height: 18px,
+    font-weight: light,
+    letter-spacing: normal
+  ),
+  'label': (
+    font-size: 16px,
+    line-height: 18px,
+    font-weight: regular,
+    letter-spacing: .03em,
+    text-transform: uppercase
+  ),
+  'testimonial': (
+    font-size: 26px,
+    line-height: 33px,
+    font-weight: light
+  ),
+  'menu': (
+    font-size: 20px,
+    line-height: 24px,
+  ),
+  'blockquote': (
+    font-size: 32px,
+    line-height: 40px,
+  ),
+);
+
+/**
+ * Default headings. For cms content, blog posts etc.
+ */
+$sockman-headings: (
+  'h1': (45px, 48px, bold),
+  'h2': (34px, 40px, bold),
+  'h3': (24px, 32px, bold),
+  'h4': (20px, 24px, bold)
+);
+
+$sockman-font-stacks: (
+  plex: #{"IBM Plex Sans", system-ui, sans-serif},
+);
+
+$sockman-font-size-responsive-scale-factors: (
+  null: (1/2),
+  'w600': (5/6),
+  'w960': (1),
+  'w1280': 1
+);
+
+$sockman-font-weights: (
+  light: 300,
+  regular: 400,
+  book: 500,
+  semibold: 600,
+  bold: 700
+);

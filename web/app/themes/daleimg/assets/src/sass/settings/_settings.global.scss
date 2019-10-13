@@ -1,0 +1,14 @@
+///* ========================================================================
+//   #GLOBAL
+//   ======================================================================== */
+// The global settings file contains any project-wide variables; things that
+// need to be made available to the entire codebase.
+
+$sockman-global-radius: 3px !default;
+$sockman-global-transition: all 300ms ease-in-out !default;
+
+$sockman-global-themename: "daleimg";
+
+$standard-easing: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+$decelerate-easing: cubic-bezier(0.0, 0.0, 0.2, 1.0);
+$accelerate-easing: cubic-bezier(0.4, 0.0, 1.0, 1.0);

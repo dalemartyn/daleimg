@@ -1,0 +1,136 @@
+///* ========================================================================
+//   #TYPOGRAPHY
+//   ======================================================================== */
+
+/**
+ * Mixins to use our typography in components.
+ *
+ * Also used to generate our utility classes.
+ */
+
+
+
+
+
+/* Responsive typgraphy.
+   ========================================================================== */
+
+
+/**
+ * Mixin to calculate scaled font sizes using compressed typographic scale.
+ *
+ * Uses a base of 16px ($sockman-font-size-base) to calculate how much bigger the heading should be as a ratio.
+ *
+ * Uses $sockman-font-size-responsive-scale-factors to figure out how much to scale.
+ */
+@mixin sockman-scaled-font-sizes($desktop-font-size, $desktop-line-height, $important: false) {
+  
+  @each $bp-name, $responsive-scale-factor in $sockman-font-size-responsive-scale-factors {
+
+    $font-size: $sockman-font-size-base + (($desktop-font-size - $sockman-font-size-base) * $responsive-scale-factor);
+
+    $line-height: null;
+    @if ( unitless($desktop-line-height) ) {
+      $line-height: $desktop-line-height;
+    } @else {
+      $line-height: ($desktop-line-height / $desktop-font-size);
+    }
+    
+    @include mq($from: $bp-name) {
+      @include sockman-font-size($font-size, $line-height, $important: $important);
+    }
+
+  }
+
+}
+
+
+/**
+ * Mixin to use if we want to use a heading size.
+ *
+ * Uses a base of 16px to calculate how much bigger the heading should be as a ratio.
+ */
+@mixin sockman-heading($h-value, $important: false) {
+  $heading-values: map-get($sockman-headings, $h-value);
+
+  $desktop-font-size: nth($heading-values, 1);
+  $desktop-line-height: nth($heading-values, 2);
+  $font-weight: nth($heading-values, 3);
+
+  @include sockman-font-weight($font-weight);
+
+  @include sockman-scaled-font-sizes($desktop-font-size, $desktop-line-height, $important: $important);
+}
+
+
+/**
+ * Mixin to use if we want to use a type size.
+ *
+ * Uses a base of 16px to calculate how much bigger the style should be as a ratio.
+ */
+@mixin sockman-type-style($type-name, $important: false) {
+  $type-properties: map-get($sockman-type-styles, $type-name);
+
+  $desktop-font-size: map-get($type-properties, font-size);
+  $desktop-line-height: map-get($type-properties, line-height);
+  $font-weight: map-get($type-properties, font-weight);
+  $letter-spacing: map-get($type-properties, letter-spacing);
+  $case: map-get($type-properties, text-transform);
+  $color: map-get($type-properties, color);
+  $font-family: map-get($type-properties, font-family);
+  $font-style: map-get($type-properties, font-style);
+
+  @if ($case) {
+    text-transform: $case;
+  }
+
+  @if ($color) {
+    color: color($color) !important;
+  }
+
+  @if ($font-style) {
+    font-style: $font-style;
+  }
+
+  @if ($font-family) {
+    @include sockman-font($font-family);
+  }
+
+  @include sockman-font-weight($font-weight);
+  letter-spacing: $letter-spacing;
+  @include sockman-scaled-font-sizes($desktop-font-size, $desktop-line-height, $important: $important);
+}
+
+
+/**
+ * Mixin similar to the sockman-scaled-font-sizes mixin.
+ *
+ * Allows us to scale properties along the same typographic scale, which is useful for
+ * our SVGs, which use widths heights and paddings for positioning.
+ */
+ @mixin sockman-scaled-property($property, $desktop-size) {
+  @each $bp-name, $responsive-scale-factor in $sockman-font-size-responsive-scale-factors {
+    $size: $sockman-font-size-base + (($desktop-size - $sockman-font-size-base) * $responsive-scale-factor);
+
+    @include mq($from: $bp-name) {
+      #{$property}: $size;
+    }
+  }
+}
+
+/**
+ * Output the font-weight value.
+ *
+ * Using this mixin gives us flexibility to change weights e.g. 600 -> 700, or
+ * change the value for fallback fonts etc.
+ */
+@mixin sockman-font-weight($weight) {
+  font-weight: map-get($sockman-font-weights, $weight);
+}
+
+/**
+ * Get a font stack by name
+ */
+@mixin sockman-font($name) {
+  font-family: map-get($sockman-font-stacks, $name);
+}

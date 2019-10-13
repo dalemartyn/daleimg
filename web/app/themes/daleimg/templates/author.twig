@@ -1,0 +1,16 @@
+{# 
+	Template for Author archive pages.
+ #}
+
+
+{% extends "base.twig" %}
+
+{% block content %}
+	{# Author Name #}
+	{% if title %}<h1>{{title}}</h1>{% endif %}
+	
+	{# Author Posts #}
+	{% for post in posts %}
+		{% include ["tease-"~post.post_type~".twig", "tease.twig"] %}
+	{% endfor %}
+{% endblock %}

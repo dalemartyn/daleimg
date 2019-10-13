@@ -1,0 +1,29 @@
+{% if main_menu %}
+
+<nav class="c-site-navigation">
+	<div class="c-site-navigation__menu-button-wrapper">
+		{# 
+			# On mobile, without javascript we link to the navigation on the footer.
+			# This will progressively enhace into a button that toggles the menu in
+			# header on/off.
+			#}
+		<a href="#footer-nav" class="c-site-navigation__menu-button js-site-nav-menu-link" aria-label="Main Menu"></a>
+	</div>
+	<div class="c-site-navigation__mobile-menu js-site-nav-menu is-inactive is-offscreen">
+		<div class="o-wrapper u-padding-vertical">
+
+			<ul class="c-site-mobile-menu" id="site-menu">
+				{% for item in main_menu.get_items %}
+					<li class="c-site-mobile-menu__item u-margin-vertical-small">
+						<a href="{{item.get_link}}" class="c-site-mobile-menu__link {{item.classes | join(' ')}}">
+							{{item.title}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+	</div>
+</nav>
+
+{% endif %}

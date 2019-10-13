@@ -1,0 +1,11 @@
+{% extends "components/components.tease.twig" %}
+
+{% block content %}
+	<h2 class="u-h2"><a href="{{post.link}}">{{post.title}}</a></h2>
+	{% if post.thumbnail %}
+		<a href="{{post.link}}">
+			{% include 'imagesizes/imagesize.tease.twig' with { 'image': post.thumbnail } %}
+		</a>
+	{% endif %}
+	<p class="u-margin-top">{{ post.preview.length(50) }}</p>
+{% endblock %}

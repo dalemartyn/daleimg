@@ -1,0 +1,88 @@
+/* ==========================================================================
+   #DESIGN GRID
+   ========================================================================== */
+
+@if (sockman-config(env) == dev) {
+
+  #grid-checkbox {
+    position: fixed;
+    z-index: 100;
+    right: 8px;
+    bottom: 8px;
+    width: 44px;
+    height: 20px;
+
+    &:checked + .c-design-grid {
+      display: block;
+    }
+
+    &:before {
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      color: #000;
+      font: inherit;
+      font-size: 16px;
+      pointer-events: none;
+      z-index: 100;
+      padding: 3px 6px;
+      content: "Grid";
+      cursor: pointer;
+    }
+
+  }
+
+  .c-design-grid {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    > .o-wrapper {
+      height: 100%;
+    }
+  }
+
+  .c-design-grid__cell {
+    background-color: rgba(#ccc, .3);
+    height: 100vh;
+    display: none;
+
+    @each $bp, $cols in $sockman-layout-columns {
+
+      @if $bp == null {
+
+        &:nth-child(-n+#{$cols}) {
+          display: block;
+        }
+
+      }
+
+      @else {
+
+        @include mq($from: $bp) {
+
+          &:nth-child(-n+#{$cols}) {
+            display: block;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  /**
+   * Move sass-mq breakpoint shower down when admin bar showing.
+   */
+  body.admin-bar::before {
+    top: 32px;
+
+    @media screen and (max-width: 782px) {
+      top: 46px;
+    }
+  }
+}

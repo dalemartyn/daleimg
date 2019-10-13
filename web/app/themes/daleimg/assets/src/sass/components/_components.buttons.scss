@@ -1,0 +1,170 @@
+/* ==========================================================================
+   #BUTTONS
+   ========================================================================== */
+
+/**
+ * This is an example component. Extend sockmancss by building your own components
+ * that make up your UI. Component classes are prefixed with a `c-`.
+ */
+
+/**
+ * 1. Allow us to style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Make buttons inherit font styles (often necessary when styling `input`s as
+ *    buttons).
+ * 4. Reset/normalize some styles.
+ * 5. Force all button-styled elements to appear clickable.
+ */
+
+.c-button {
+  display: inline-block; /* [1] */
+  vertical-align: middle; /* [2] */
+  font: inherit; /* [3] */
+  text-align: center; /* [4] */
+  margin: 0; /* [4] */
+  cursor: pointer; /* [5] */
+  padding: $sockman-global-spacing-unit-small $sockman-global-spacing-unit;
+  transition: $sockman-global-transition;
+  border-radius: $sockman-global-radius;
+}
+
+
+
+
+
+/* Style variants
+   ========================================================================== */
+
+.c-button--primary {
+  background-color: #4a8ec2;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none; /* [4] */
+    color: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #3774a2;
+  }
+
+}
+
+.c-button--secondary {
+  background-color: #2f4054;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #1d2733;
+  }
+
+}
+
+.c-button--tertiary {
+  background-color: #fff;
+  color: #4a8ec2;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: #4a8ec2;
+  }
+
+  &:hover,
+  &:focus {
+    color: #3774a2;
+  }
+
+}
+
+
+
+
+
+/* Size variants
+   ========================================================================== */
+
+.c-button--small {
+  padding: $sockman-global-spacing-unit-tiny $sockman-global-spacing-unit-small;
+}
+
+.c-button--large {
+  padding: $sockman-global-spacing-unit $sockman-global-spacing-unit-large;
+}
+
+
+
+
+
+/* Ghost buttons
+   ========================================================================== */
+
+/**
+ * Ghost buttons have see-through backgrounds and are bordered.
+ */
+
+$button-ghost-border-width: 2px;
+
+.c-button--ghost {
+  border: $button-ghost-border-width solid currentColor;
+  padding: ($sockman-global-spacing-unit-small - $button-ghost-border-width) ($sockman-global-spacing-unit - $button-ghost-border-width);
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    background: none;
+  }
+
+  &.c-button--small {
+    padding: ($sockman-global-spacing-unit-tiny - $button-ghost-border-width) ($sockman-global-spacing-unit-small - $button-ghost-border-width);
+  }
+
+  &.c-button--large {
+    padding: ($sockman-global-spacing-unit - $button-ghost-border-width) ($sockman-global-spacing-unit-large - $button-ghost-border-width);
+  }
+
+  &.c-button--primary {
+    color: #4a8ec2;
+
+    &:hover,
+    &:focus {
+      color: #3774a2;
+    }
+
+  }
+
+  &.c-button--secondary {
+    color: #2f4054;
+
+    &:hover,
+    &:focus {
+      color: #1d2733;
+    }
+
+  }
+
+  &.c-button--tertiary {
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+
+  }
+
+}

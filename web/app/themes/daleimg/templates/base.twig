@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" {{site.language_attributes}}>
+<head>
+	<meta charset="{{site.charset}}" />
+	<title>
+		{% if wp_title %}
+			{{ wp_title }}
+		{% else %}
+			{{ site.name }}
+		{% endif %}
+	</title>
+	<meta name="description" content="{{site.description}}">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="pingback" href="{{site.pingback_url}}" />
+	{% include 'includes/meta-favicons.twig' %}
+
+	{{function('wp_head')}}
+
+	{% block head %}{% endblock %}
+	<script>
+	document.documentElement.classList.remove('no-js');
+	document.documentElement.classList.add('js');
+	</script>
+</head>
+
+	<body class="{{body_class}}" data-template="base.twig">
+
+		<div class="c-site-wrapper">
+			<div class="c-site-wrapper__header">
+				{% block header %}
+					{% include 'components/components.site-header.twig' %}
+				{% endblock %}
+			</div>
+
+			<main class="c-site-wrapper__main">
+				{% block content %}
+				{% endblock %}
+			</main>
+		</div>
+
+		{% do action('render_design_grid') %}
+		{{ function('wp_footer') }}
+	</body>
+</html>

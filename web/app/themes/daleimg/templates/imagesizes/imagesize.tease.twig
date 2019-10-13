@@ -1,0 +1,15 @@
+{#
+ # 3x2 image to go with a post on the posts page.
+ #}
+
+{% set img = SockmanImage(image) %}
+<img
+	src="{{ img.src('3x2_360w') }}"
+	alt="{{ img.alt }}"
+	srcset="{{ img.srcset('3x2_360w') }}"
+	sizes="{{ img.sizes( [
+		[ 4, 12 ],
+		[ 4, 8 ],
+		[ 4, 4 ]
+	] ) }}"
+	class="c-imagesize c-imagesize--thumbnail" />

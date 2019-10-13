@@ -1,0 +1,19 @@
+{% if options.show_cookie_banner %}
+	{% set banner = options.cookie_banner %}
+
+	<div class="c-cookie-consent js-cookie-consent" style="display: none;">
+		<div class="o-wrapper">
+			<div class="o-flex u-padding-vertical-small">
+				<div class="u-flex-1">
+					{{ banner.banner_text }}
+					{% if banner.find_out_more_link %}
+						<a href="{{ banner.find_out_more_link }}">{{ banner.find_out_more_link_text }}</a>
+					{% endif %}
+				</div>
+				<div class="c-cookie-consent__dismiss u-padding-left u-self-end">
+					<button class="c-button js-cookie-consent-dismiss">{{ banner.dismiss_button_text }}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

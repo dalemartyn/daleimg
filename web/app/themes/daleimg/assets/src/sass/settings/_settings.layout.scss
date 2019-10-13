@@ -1,0 +1,100 @@
+///* ========================================================================
+//   #LAYOUT
+//   ======================================================================== */
+
+/**
+ * Layout grid and wrapper settings.
+ */
+
+$sockman-global-font-size:    16px;
+$sockman-global-line-height:  24px;
+
+
+$sockman-layout-breakpoints: (
+  null: null,
+  w600: 600px,
+  w960: 960px
+);
+
+$sockman-layout-breakpoint-names: (
+  null: null,
+  w600: c8,
+  w960: c12
+);
+
+$sockman-layout-columns: (
+  null: 4,
+  w600: 8,
+  w960: 12
+);
+
+$sockman-layout-default-margin: (
+  null: 16px,
+  w600: 48px,
+  w960: 48px
+);
+
+$sockman-layout-default-gutter: (
+  null: 24px,
+  w600: 24px,
+  w960: 32px,
+);
+
+$sockman-responsive-units: (
+  null: 16px,
+  w600: 24px,
+  w960: 24px,
+);
+
+$sockman-layout-column-width: (
+  null: 64px,
+  w600: 64px,
+  w960: 50px,
+);
+
+$sockman-layout-default-column-span: 4;
+
+@function get_max_width() {
+  $upper-breakpoint: nth(map-keys($sockman-layout-columns), length($sockman-layout-columns));
+  $cols: map-get($sockman-layout-columns, $upper-breakpoint);
+  $col_width: map-get($sockman-layout-column-width, $upper-breakpoint);
+  $gutters: map-get($sockman-layout-default-gutter, $upper-breakpoint);
+  $margins: map-get($sockman-layout-default-margin, $upper-breakpoint);
+
+  $max_width: ($cols * $col_width) + (($cols - 1) * $gutters) + ($margins * 2);
+
+  @return $max_width;
+}
+
+
+$sockman-layout-max-width: get_max_width();
+
+$sockman-breakpoint-separator: \@;
+
+$sockman-spacing-unit-factors: (
+  micro:   .125,
+  tiny:   .25,
+  small:  .5,
+  large:  2,
+  xlarge: 3,
+  huge:   4,
+  xhuge:  8,
+);
+
+@function sockman-scale-factor($name) {
+  @return map-get($sockman-spacing-unit-factors, $name);
+}
+
+
+/**
+ * Non-responsive units.
+ * Can be useful in things that don't scale e.g. buttons.
+ */
+$sockman-global-spacing-unit: round($sockman-global-font-size);
+$sockman-global-spacing-unit-micro:  round($sockman-global-spacing-unit * sockman-scale-factor(micro));
+$sockman-global-spacing-unit-tiny:  round($sockman-global-spacing-unit * sockman-scale-factor(tiny));
+$sockman-global-spacing-unit-small: round($sockman-global-spacing-unit * sockman-scale-factor(small));
+$sockman-global-spacing-unit-large: round($sockman-global-spacing-unit * sockman-scale-factor(large));
+$sockman-global-spacing-unit-xlarge: round($sockman-global-spacing-unit * sockman-scale-factor(xlarge));
+$sockman-global-spacing-unit-huge:  round($sockman-global-spacing-unit * sockman-scale-factor(huge));
+$sockman-global-spacing-unit-xhuge:  round($sockman-global-spacing-unit * sockman-scale-factor(xhuge));

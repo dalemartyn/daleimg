@@ -1,0 +1,87 @@
+.s-content,
+.mce-content-body {
+
+  p,
+  li {
+    @include sockman-type-style("b2");
+  }
+
+  p,
+  h2,
+  h3,
+  h4 {
+    @include responsive-property(margin-bottom);
+  }
+
+  * + h2 {
+    @include responsive-property(margin-top, xlarge);
+  }
+
+  * + h3 {
+    @include responsive-property(margin-top, large);
+  }
+
+  blockquote {
+    @include responsive-property(margin-top, large);
+    @include responsive-property(margin-bottom, large);
+
+    p {
+      color: color("grey");
+      @include sockman-type-style("blockquote");
+    }
+  }
+
+  q {
+    @include sockman-type-style("h2");
+    color: color("grey");
+    @include responsive-property(margin-top, large);
+    @include responsive-property(margin-bottom, large);
+    display: block;
+
+    @include mq($from: w960) {
+      margin-left: calc(((1/8 * 100% + var(--gutter))) * -1 + var(--gutter));
+      margin-right: calc(((1/8 * 100% + var(--gutter))) * -1 + var(--gutter));
+    }
+  }
+
+}
+
+
+
+.s-content--large-first-paragraph {
+
+  p:first-of-type {
+    @include sockman-type-style("b1");
+  }
+}
+
+
+
+.s-content--large {
+
+  p {
+    @include sockman-type-style("b1");
+  }
+}
+
+.s-content--large-h2 {
+
+  h2 {
+    @include sockman-type-style("h1");
+  }
+}
+
+.s-content--max-line-length {
+
+  p {
+    max-width: 54ch;
+  }
+}
+
+
+.s-content--small {
+
+  p {
+    @include sockman-type-style("b3");
+  }
+}

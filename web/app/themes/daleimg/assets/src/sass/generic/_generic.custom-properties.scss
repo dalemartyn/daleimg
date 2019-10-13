@@ -1,0 +1,73 @@
+/* ==========================================================================
+   #CUSTOM-PROPERTIES
+   ========================================================================== */
+
+
+/**
+ * Mixin to output our custom properties for margins and gutters.
+ */
+@mixin sockman-spacing-properties( $bp_name ) {
+  $gutter: map-get($sockman-layout-default-gutter, $bp_name);
+  --gutter: #{$gutter};
+
+  $margin: map-get($sockman-layout-default-margin, $bp_name);
+  --margin: #{$margin};
+
+  $spacing-unit: map-get($sockman-responsive-units, $bp_name);
+  --spacing-unit: #{$spacing-unit};
+}
+
+@mixin sockman-layout-max-width( $bp_name ) {
+    $cols: map-get($sockman-layout-columns, $bp_name);
+    $col_width: map-get($sockman-layout-column-width, $bp_name);
+    $gutter: map-get($sockman-layout-default-gutter, $bp_name);
+    $margin: map-get($sockman-layout-default-margin, $bp_name);
+
+    $max-width: ($cols * $col_width) + (($cols - 1) * $gutter) + $margin * 2;
+    --layout-max-width: #{$max-width};
+}
+
+@function sockman-content-max-width( $bp_name, $cols ) {
+  $col_width: map-get($sockman-layout-column-width, $bp_name);
+  $gutter: map-get($sockman-layout-default-gutter, $bp_name);
+  $margin: map-get($sockman-layout-default-margin, $bp_name);
+
+  @debug $col_width;
+  @debug $gutter;
+  @debug $cols;
+
+  $max-width: ($cols * $col_width) + (($cols - 1) * $gutter);
+  @return $max-width;
+}
+
+@function sockman-content-max-width-with-margins($bp_name, $cols) {
+  $col_width: map-get($sockman-layout-column-width, $bp_name);
+  $gutter: map-get($sockman-layout-default-gutter, $bp_name);
+  $margin: map-get($sockman-layout-default-margin, $bp_name);
+
+  $max-width: ($cols * $col_width) + (($cols - 1) * $gutter) + $margin * 2;
+  @return $max-width;
+}
+
+
+:root {
+
+  /**
+   * Use the maximum breakpoint as default,
+   * to enable old IE to use the largest values for gutters and margins.
+   */
+   $upper_breakpoint: nth(map-keys($sockman-layout-columns), length($sockman-layout-columns));
+
+   @include sockman-spacing-properties( $upper_breakpoint );
+
+
+   // include our different spacings (custom properties) at each breakpoint.
+   @each $bp_name in map-keys($sockman-layout-breakpoints) {
+
+    @include mq( $from: $bp_name ) {
+      @include sockman-spacing-properties($bp_name);
+      @include sockman-layout-max-width($bp_name);
+    }
+
+  }
+}

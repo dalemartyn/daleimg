@@ -1,0 +1,9 @@
+<ul class="c-site-menu {{extra_classes}}" {% if id %}id="{{id}}"{% endif %}>
+	{% for item in main_menu.get_items %}
+		<li class="c-site-menu__item">
+			<a href="{{item.get_link}}" class="c-site-menu__link {{item.classes | join(' ')}}">
+				{{item.title}}
+			</a>
+		</li>
+	{% endfor %}
+</ul>

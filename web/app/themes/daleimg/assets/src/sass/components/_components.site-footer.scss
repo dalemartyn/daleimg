@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #SITE-FOOTER
+   ========================================================================== */
+
+
+.c-site-footer {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+  .c-site-footer__content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    @include sockman-type-style("b3");
+
+    @include mq($from: w600) {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+    .c-site-footer__legal {
+      display: flex;
+      flex-direction: column;
+
+      @include sockman-type-style("b3");
+
+      @include mq($from: w960) {
+        flex-direction: row;
+      }
+    }
+
+    .c-site-footer__link {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }

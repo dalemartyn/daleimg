@@ -1,0 +1,53 @@
+/* ==========================================================================
+   #HIDE
+   ========================================================================== */
+
+/**
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.u-hidden-visually {
+  @include sockman-hidden-visually();
+}
+
+
+/**
+ * Hide visually and from screen readers.
+ */
+
+.u-hidden {
+  display: none !important;
+}
+
+
+
+
+
+/**
+ * Responsive helpers. Usage:
+ *
+ * <div class="u-hidden@w960">...</div>
+ * <div class="u-hidden-until@w960"></div>
+ *
+ * No need for a u-visible helper as we just define when its hidden instead.
+ */
+@each $sockman-bp-name, $sockman-bp-value in $mq-breakpoints {
+
+  @include mq($until: $sockman-bp-name) {
+
+    .u-hidden-until#{$sockman-widths-breakpoint-separator}#{$sockman-bp-name} {
+      display: none !important;
+    }
+
+  }
+
+  @include mq($from: $sockman-bp-name) {
+
+    .u-hidden#{$sockman-widths-breakpoint-separator}#{$sockman-bp-name} {
+      display: none !important;
+    }
+
+  }
+
+}

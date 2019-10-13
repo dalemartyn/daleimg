@@ -1,0 +1,19 @@
+/* ==========================================================================
+   #HEADINGS
+   ========================================================================== */
+
+/**
+ * Simple default styles for headings. Anything more opinionated
+ * than simple font-size changes should likely be applied via classes (see:
+ * http://csswizardry.com/2016/02/managing-typography-on-large-apps/).
+ */
+
+$heading-values: map-keys($sockman-headings);
+
+@each $heading-value, $font-sizes in $sockman-headings {
+
+  #{$heading-value} {
+    @include sockman-heading($heading-value);
+  }
+
+}

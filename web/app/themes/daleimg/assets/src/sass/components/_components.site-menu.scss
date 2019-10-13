@@ -1,0 +1,91 @@
+/* ==========================================================================
+   #SITE-MENU
+   ========================================================================== */
+
+/**
+ * Main menu styles.
+ *
+ * 1. Display the menu as a vertical list on mobile.
+ * 2. Change to horizontal for tablet and desktop.
+ * 3. Hide the menu on mobile until the menu button is clicked.
+ * 4. Ensure text is left aligned (overrides footer text-align: center).
+ */
+
+.c-site-menu {
+  display: flex;
+  flex-direction: column; /* [1] */
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  text-align: left; /* [4] */
+  justify-content: center;
+
+  @include mq($until: w960) {
+    @include responsive-property(margin-top);
+  }
+
+  @include mq($from: w960) {
+    flex-direction: row;  /* [2] */
+  }
+
+  &.is-hidden-on-mobile {
+    @include mq($until: w960) {
+      display: none; /* [3] */
+    }
+  }
+}
+
+
+
+
+
+
+.c-site-menu__item {
+  position: relative;
+
+  @include responsive-properties((
+    margin-left: small,
+    padding-left: micro,
+    margin-right: small,
+    padding-right: micro,
+  ));
+
+  @include mq($until: w960) {
+    margin-right: initial;
+    text-align: center;
+  }
+}
+
+
+
+
+
+/**
+ * Site menu links. svgs are right arrow chevrons.
+ */
+
+.c-site-menu__link {
+  display: block;
+  color: color("black");
+  @include sockman-type-style("menu");
+  text-decoration: none;
+
+  @include responsive-properties((
+    padding: small tiny
+  ));
+
+  /**
+   * Highlight the menu item if it is a parent/ancestor of the page or post
+   * we are on.
+   */
+
+  .c-site-menu__item:hover &,
+  &.current-menu-item,
+  &.current-page-ancestor,
+  &.active,
+  &:hover {
+    color: $color-link;
+    // text-decoration: underline;
+  }
+
+}

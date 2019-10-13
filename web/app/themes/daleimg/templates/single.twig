@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article>
+	<section class="o-content-wrapper u-padding-vertical-large">
+		<div class="s-content">
+			<h1 class="ts-h1">{{post.title}}</h1>
+			<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.post_date|date}}
+			{{post.content}}
+		</div>
+	</section>
+</article>
+{% endblock %}

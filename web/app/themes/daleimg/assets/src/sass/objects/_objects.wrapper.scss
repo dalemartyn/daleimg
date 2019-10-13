@@ -1,0 +1,31 @@
+/* ==========================================================================
+   #WRAPPER
+   ========================================================================== */
+
+/**
+ * Page-level constraining and wrapping elements.
+ */
+
+$content-width: 720px;
+
+
+.o-wrapper {
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--layout-max-width);
+}
+
+.o-content-wrapper {
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calc(#{$content-width} + var(--margin) * 2);
+}
+
+.o-wrapper-full {
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+}

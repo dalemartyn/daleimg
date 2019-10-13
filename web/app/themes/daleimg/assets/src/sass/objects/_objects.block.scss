@@ -1,0 +1,63 @@
+/* ==========================================================================
+   #BLOCK
+   ========================================================================== */
+
+/**
+ * Stacked image-with-text object. A simple abstraction to cover a very commonly
+ * occurring design pattern.
+ */
+
+.o-block {
+  display: block;
+  text-align: center;
+}
+
+
+  .o-block__img {
+    @include responsive-property(margin-bottom);
+
+
+    /* Size variants.
+       ====================================================================== */
+
+    .o-block--flush > & {
+      margin-bottom: 0;
+    }
+
+    .o-block--tiny > & {
+      @include responsive-property(margin-bottom, tiny);
+    }
+
+    .o-block--small > & {
+      @include responsive-property(margin-bottom, small);
+    }
+
+    .o-block--large > & {
+      @include responsive-property(margin-bottom, large);
+    }
+
+    .o-block--huge > & {
+      @include responsive-property(margin-bottom, huge);
+    }
+
+  }
+
+
+  .o-block__body {
+    display: block;
+  }
+
+
+
+
+
+/* Alignment variants.
+   ========================================================================== */
+
+.o-block--right {
+  text-align: right;
+}
+
+.o-block--left {
+  text-align: left;
+}

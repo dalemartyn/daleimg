@@ -1,0 +1,24 @@
+/* ==========================================================================
+   #COOKIE CONSENT BANNER
+   ========================================================================== */
+
+
+/**
+ * Cookie consent.
+ */
+
+.c-cookie-consent {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .8);
+  color: #fff;
+}
+
+.c-cookie-consent__dismiss {
+  align-self: flex-end;
+
+  @include mq($from: w600) {
+    align-self: center;
+  }
+}

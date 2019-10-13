@@ -1,0 +1,19 @@
+<div class="c-gallery o-layout u-margin-bottom">
+{% for attachment in attachments %}
+	{% set image = Image(attachment) %}
+	<figure class="c-gallery__item o-layout__cell o-layout__cell--span-2@c8 o-layout__cell--span-3@c12">
+		{% if image.link %}
+			<a href="{{ image.link }}">
+				{% include 'imagesizes/imagesize.thumbnail.twig' with { 'image': image } %}
+			</a>
+		{% else %}
+			{% include 'imagesizes/imagesize.thumbnail.twig' with { 'image': image } %}
+		{% endif %}
+		{% if attachment.preview %}
+			<caption>
+				{{ attachment.preview }}
+			</caption>
+		{% endif %}
+	</figure>
+{% endfor %}
+</div>

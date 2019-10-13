@@ -1,0 +1,191 @@
+///* ========================================================================
+//   #LAYOUT
+//   ======================================================================== */
+
+/**
+ * Mixins for the layout and wrapper objects.
+ */
+
+@mixin if-grid-support {
+  @if (sockman-config(css-grid) == true) { @supports (display: grid) { @content; } }
+}
+
+// returns the lower grid boundary or null if the smallest grid is selected
+@function sockman-layout-breakpoint-min($size) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+  $min: map-get($sockman-layout-breakpoints, $size);
+
+  @return if($min != 0, $min, null);
+}
+
+// returns the upper grid boundary or null if the largest grid is selected
+@function sockman-layout-breakpoint-max($size) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+  $names: map-keys($sockman-layout-columns);
+  $n: index($names, $size);
+  $next: if($n < length($names), nth($names, $n + 1), null);
+
+  @return if($next, sockman-layout-breakpoint-min($next), null);
+}
+
+// Private mixins, meant for internal use.
+@mixin sockman-layout-media-query_($size) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  $min: sockman-layout-breakpoint-min($size);
+  $max: sockman-layout-breakpoint-max($size);
+
+  @if $min == null and $max != null {
+    // Phone
+    @include mq($until: $max) {
+      @content;
+    }
+  } @else if $min != null and $max != null {
+    // Tablet
+    @include mq($from: $min, $until: $max) {
+      @content;
+    }
+  } @else if $min != null and $max == null {
+    // Desktop
+    @include mq($from: $min) {
+      @content;
+    }
+  } @else {
+    // Fallback - no breakpoints defined
+    @content;
+  }
+}
+
+@mixin sockman-layout-cell-span_($size, $span, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  $percent: percentage($span / map-get($sockman-layout-columns, $size));
+
+  @if $percent > 100% {
+    $percent: 100%;
+  }
+
+  width: calc(#{$percent} - #{$gutter});
+}
+
+@mixin sockman-layout-cell-push_($size, $span, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  $percent: percentage($span / map-get($sockman-layout-columns, $size));
+
+  @if $percent > 100% {
+    $percent: 100%;
+  }
+
+  margin-left: calc(#{$percent} + ( #{$gutter} ) );
+}
+
+@mixin sockman-layout-cell-pull_($size, $span, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  $percent: percentage($span / map-get($sockman-layout-columns, $size));
+
+  @if $percent > 100% {
+    $percent: 100%;
+  }
+
+  margin-left: calc(#{- $percent} + ( #{$gutter} ) );
+}
+
+@mixin sockman-layout-cell-push_($size, $span, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+  $percent: percentage($span / map-get($sockman-layout-columns, $size));
+  @if $percent>100% {
+    $percent: 100%;
+  }
+  margin-left: calc(#{$percent} + ( #{$gutter}));
+}
+
+
+// Public mixins, meant for developer usage.
+@mixin sockman-wrapper($size, $margin, $max-width: null) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $margin;
+  padding-right: $margin;
+  width: 100%;
+
+  @if $max-width {
+    max-width: $max-width;
+  }
+}
+
+@mixin sockman-layout($size, $margin, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  margin-left: -$gutter;
+}
+
+@mixin sockman-layout-cell($size, $default-span, $gutter) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  @include sockman-layout-cell-span_($size, $default-span, $gutter);
+
+  box-sizing: border-box;
+  margin-left: $gutter;
+}
+
+@mixin sockman-layout-cell-order($order) {
+  order: $order;
+}
+
+@mixin sockman-layout-cell-align($position) {
+  @if $position == "top" {
+    align-self: flex-start;
+  }
+
+  @if $position == "middle" {
+    align-self: center;
+  }
+
+  @if $position == "bottom" {
+    align-self: flex-end;
+  }
+
+  @if $position == "stretch" {
+    align-self: stretch;
+  }
+}
+
+@mixin sockman-layout-fixed-column-width($size, $margin, $gutter, $column-width) {
+  @if not map-has-key($sockman-layout-columns, $size) {
+    @error "Invalid style specified! Choose one of #{map-keys($sockman-layout-columns)}";
+  }
+
+  $columnCount: map-get($sockman-layout-columns, $size);
+  $gutter-number: $columnCount - 1;
+  $margin-number: 2;
+
+  width: $column-width * $columnCount + $gutter * $gutter-number + $margin * $margin-number;
+}

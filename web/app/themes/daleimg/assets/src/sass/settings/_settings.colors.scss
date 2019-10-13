@@ -1,0 +1,20 @@
+///* ========================================================================
+//   #COLORS
+//   ======================================================================== */
+
+/**
+ * Set up the color palette for the project.
+ */
+
+$palette:  (
+  'white':      #ffffff,
+  'black':      #000000,
+  'grey':       #999999,
+);
+
+@function color($color) {
+  @return map-get($palette, $color);
+}
+
+
+$color-link: color("grey");

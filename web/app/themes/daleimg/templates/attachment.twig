@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article>
+	<section>
+		<h1 class="u-h1">{{post.title}}</h1>
+		{{post.content}}
+
+		{% set image = Image(post.ID) %}
+		<figure>
+			{% if image.src %}
+				<a href="{{ image.src }}">
+					{% include 'imagesizes/imagesize.full.twig' with { 'image': image } %}
+				</a>
+			{% else %}
+				{% include 'imagesizes/imagesize.full.twig' with { 'image': image } %}
+			{% endif %}
+
+			{% if image.caption %}
+				<caption>
+					{{ image.caption }}
+				</caption>
+			{% endif %}
+		</figure>
+	</section>
+</article>
+{% endblock %}

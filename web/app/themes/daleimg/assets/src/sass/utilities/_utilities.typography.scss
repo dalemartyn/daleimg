@@ -1,0 +1,12 @@
+/* ==========================================================================
+   #TYPOGRAPHY
+   ========================================================================== */
+
+
+@each $type-name, $type-properties in $sockman-type-styles {
+
+  .ts-#{$type-name} {
+    @include sockman-type-style($type-name, $important: true);
+  }
+
+}

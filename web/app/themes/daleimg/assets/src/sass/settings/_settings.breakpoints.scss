@@ -1,0 +1,18 @@
+///* ========================================================================
+//   #BREAKPOINTS
+//   ======================================================================== */
+
+// sockman uses sass-mq for breakpoint management: https://github.com/sass-mq/sass-mq
+
+$mq-breakpoints: (
+  w480:  480px,
+  w600:  600px,
+  w960:  960px,
+  w1280: 1280px
+);
+
+$mq-show-breakpoints: ();
+
+@if (sockman-config(env) == dev) {
+  $mq-show-breakpoints: (w480, w600, w960, w1280);
+}

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "gulp": "^4.0.2"
+  },
+  "scripts": {
+    "install": "cd web/app/themes/daleimg && npm i",
+    "dev": "gulp --gulpfile ./web/app/themes/daleimg/gulpfile.js",
+    "build": "gulp build --gulpfile ./web/app/themes/daleimg/gulpfile.js",
+    "favicons": "gulp favicons --gulpfile ./web/app/themes/daleimg/gulpfile.js"
+  }
+}

@@ -1,0 +1,11 @@
+<article class="c-tease c-tease--{{post.post_type}}">
+	{% block content %}
+		<h2 class="u-h2"><a href="{{post.link}}">{{post.title}}</a></h2>
+		{% if post.thumbnail %}
+			<a href="{{post.link}}">
+				{% include 'imagesizes/imagesize.tease.twig' with { 'image': post.thumbnail } %}
+			</a>
+		{% endif %}
+		<p>{{ post.preview.length(50).read_more(false) }}</p>
+	{% endblock %}
+</article>

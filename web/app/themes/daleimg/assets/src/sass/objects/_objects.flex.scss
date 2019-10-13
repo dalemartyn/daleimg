@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #FLEX
+   ========================================================================== */
+
+/**
+ * Simple flex helper for left & right content that stacks on mobile.
+ */
+
+.o-flex {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  @include mq($from: w600) {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+

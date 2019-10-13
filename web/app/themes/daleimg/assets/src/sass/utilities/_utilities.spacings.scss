@@ -1,0 +1,88 @@
+/* ==========================================================================
+   #SPACINGS
+   ========================================================================== */
+
+/**
+ * Utility classes to put specific spacing values onto elements. The below loop
+ * will generate us a suite of classes like:
+ *
+ *   .u-margin-top {}
+ *   .u-padding-left-large {}
+ *   .u-margin-right-small {}
+ *   .u-padding {}
+ *   .u-padding-right-none {}
+ *   .u-padding-horizontal {}
+ *   .u-padding-vertical-small {}
+ */
+
+/* stylelint-disable string-quotes */
+
+$sockman-spacing-directions: (
+  null: null,
+  '-top': '-top',
+  '-right': '-right',
+  '-bottom': '-bottom',
+  '-left': '-left',
+  '-horizontal': '-left' '-right',
+  '-vertical': '-top' '-bottom',
+);
+
+$sockman-spacing-properties: (
+  'padding': 'padding',
+  'margin': 'margin',
+);
+
+$sockman-spacing-scale-factors: (
+  null: 1,
+  '-micro': sockman-scale-factor(micro),
+  '-tiny': sockman-scale-factor(tiny),
+  '-small': sockman-scale-factor(small),
+  '-large': sockman-scale-factor(large),
+  '-huge': sockman-scale-factor(huge),
+  '-none': 0
+);
+
+
+/**
+ * Output the spacing utilities.
+ * Used as a mixin here so we can use multiple times inside media queries for
+ * our responsive units.
+ */
+@mixin sockman-spacings() {
+
+  /**
+   * loop over margin & padding
+   */
+  @each $property-namespace, $property in $sockman-spacing-properties {
+
+    /**
+     * loop over directions
+     */
+    @each $direction-namespace, $direction-rules in $sockman-spacing-directions {
+
+      /**
+       * loop over sizes (tiny, small, large etc)
+       */
+      @each $size-namespace, $scale-factor in $sockman-spacing-scale-factors {
+
+        /**
+         * e.g. u-padding-left-large
+         */
+
+        .u-#{$property-namespace}#{$direction-namespace}#{$size-namespace} {
+
+          @each $direction in $direction-rules {
+            #{$property}#{$direction}: calc(var(--spacing-unit) * #{$scale-factor}) !important;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@include sockman-spacings;

@@ -1,0 +1,49 @@
+/* ==========================================================================
+   #SITE-MOBILE-MENU
+   ========================================================================== */
+
+/**
+ * Mobile Menu Styles
+ */
+
+.c-site-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  text-align: left;
+}
+
+
+.c-site-mobile-menu__item {
+  position: relative;
+  @include responsive-property(margin-left);
+  @include sockman-type-style("h1");
+}
+
+
+
+
+
+/**
+ * Site menu links.
+ */
+
+.c-site-mobile-menu__link {
+  display: inline-block;
+  text-decoration: none;
+  color: $color-link;
+
+  /**
+   * Highlight the menu item if it is a parent/ancestor of the page or post
+   * we are on.
+   */
+
+  &.current-menu-item,
+  &.current-page-ancestor,
+  &:hover {
+    // text-decoration: underline;
+  }
+
+}

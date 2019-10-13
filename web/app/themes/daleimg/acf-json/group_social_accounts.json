@@ -1,0 +1,62 @@
+{
+    "key": "group_social_accounts",
+    "title": "Social Accounts",
+    "fields": [
+        {
+            "key": "field_5a68727a12ad5",
+            "label": "LinkedIn",
+            "name": "social_account_linkedin",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "https:\/\/www.linkedin.com\/company\/",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a6872cc12ad6",
+            "label": "Twitter",
+            "name": "social_account_twitter",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "https:\/\/twitter.com\/",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "contact-details"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1516794617
+}

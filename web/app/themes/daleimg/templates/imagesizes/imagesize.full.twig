@@ -1,0 +1,15 @@
+{#
+ # square thumbnail image.
+ #}
+
+{% set img = SockmanImage(image) %}
+<img
+	src="{{ img.src('360w') }}"
+	alt="{{ img.alt }}"
+	srcset="{{ img.srcset('360w') }}"
+	sizes="{{ img.sizes( [
+		[ 12, 12 ],
+		[ 8, 8 ],
+		[ 4, 4 ]
+	] ) }}"
+	class="c-imagesize c-imagesize--full" />

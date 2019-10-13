@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<article>
+	<div class="o-wrapper u-padding-vertical-large">
+		{% if title %}
+			{# Title set in the .php template (e.g. archive.php) #}
+			<h1 class="ts-h1">{{title}}</h1>
+		{% elseif post.title %}
+			{# The page title #}
+			<h1 class="ts-h1">{{post.title}}</h1>
+		{% endif %}
+
+		<div class="o-layout u-margin-bottom">
+		{% for post in posts %}
+			<div class="o-layout__cell o-layout__cell--span-4@c8 o-layout__cell--span-4@c12">
+				{% include ['components/components.tease--'~post.post_type~'.twig', 'components/components.tease.twig'] %}
+			</div>
+		{% endfor %}
+		</div>
+		{% include 'components/components.pagination.twig' %}
+	</div>
+</article>
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+    "files.exclude": {
+        "web/app/uploads/**": true,
+        "web/app/upgrade/**": true,
+        "web/app/languages/**": true,
+        "vendor/**": true,
+        "web/wp/wp-content/**": true,
+        "web/app/mu-plugins/timber-library/timber-starter-theme/**": true
+    },
+    "phpcs.enable": true,
+    "phpcs.standard": "WordPress",
+    "phpcbf.standard": "WordPress",
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#fff",
+      "titleBar.activeForeground": "#000"
+    }
+}

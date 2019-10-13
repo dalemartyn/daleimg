@@ -1,0 +1,19 @@
+<div class="c-comment {{comment.comment_type}}">
+	<h5 class="c-comment__author">{{comment.author.name}} says</h5>
+	<div class="c-comment__content">{{comment.comment_content|wpautop}}</div>
+
+	<section class="c-comment-box">
+		<!-- child comments -->
+		{% if post.comments %}
+			<h4> replies </h4>
+			<div class="c-comment-box__comments">
+				{% for cmt in comment.children %}
+					{% include "comment.twig" with {comment:cmt} %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		<!-- comment form -->
+		{% include "comment-form.twig" %}
+	</section>
+</div>

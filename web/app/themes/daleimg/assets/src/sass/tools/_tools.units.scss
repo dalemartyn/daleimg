@@ -1,0 +1,123 @@
+///* ========================================================================
+//   #UNITS
+//   ======================================================================== */
+
+/**
+ * Tools for responsive units. Based on the grid gutter sizes `$sockman-layout-default-gutter`
+ */
+
+
+
+
+
+
+/**
+ * Get unique gutter values to use as out base units.
+ *
+ * returns a map of breakpoint names and gutter values.
+ */
+@function reduce-gutters() {
+  $default-gutter: nth($sockman-layout-default-gutter, 1);
+  $default-gutter-name: nth($default-gutter, 1);
+  $default-gutter-value: nth($default-gutter, 2);
+
+  $gutters: (
+    $default-gutter-name: $default-gutter-value
+  );
+
+  $current-gutter: $default-gutter-value;
+
+  @each $bp, $gutter in $sockman-layout-default-gutter {
+    $current-gutter: nth(nth($gutters, length($gutters)), 2);
+    
+    @if $gutter != $current-gutter {
+      $gutters: map-merge($gutters, ($bp: $gutter));
+    }
+  }
+
+  @return $gutters;
+}
+
+
+
+
+
+// $sockman-responsive-units: reduce-gutters();
+
+
+
+/**
+ * Get responsive unit value at a given breakpoint
+ *
+ * TODO: Test if this works.
+ */
+@function get-responsive-unit( $bp ) {
+
+  // set unit to be the fisrt responsive unit.
+  $unit: nth( nth( $sockman-repsonsive-units, 1), 2);
+
+  // loop through the units and set $unit to the value if less than $bp.
+  @each $b, $u in $sockman-responsive-units {
+    @if $b <= $bp {
+      $unit: $u;
+    }
+  }
+
+  @return $unit;
+}
+
+/**
+ * Helper function to get the scale factor base on $size, e.g. "large".
+ */
+@function sockman-scale-factor($size) {
+  $scale-factor: null;
+  @if ($size == null or $size == "none") {
+    $scale-factor: 0;
+  } @else if ($size == "normal") {
+    $scale-factor: 1;
+  } @else {
+    $scale-factor: map-get($sockman-spacing-unit-factors, $size);
+  }
+
+  @return $scale-factor;
+}
+
+
+
+/**
+ * Get the responsive property.
+ *
+ * Size is e.g. 'tiny', 'small', 'large', 'huge'.
+ */
+@mixin responsive-property($property, $size: null, $important: false) {
+
+  @if ($important == true) {
+    $important: !important;
+  } @elseif ($important == false) {
+    $important: null;
+  } @else {
+    @error "`#{$important}` needs to be `true` or `false`."
+  }
+
+  $scale-factor: if($size, map-get($sockman-spacing-unit-factors, $size), 1);
+
+  #{$property}: calc(var(--spacing-unit) * #{$scale-factor}) $important;
+
+}
+
+
+/**
+ * Takes a list of properties and makes them responsive.
+ */
+@mixin responsive-properties($properties) {
+
+  @each $property, $sizes in $properties {
+    $values: ();
+    @each $size in $sizes {
+      $scale-factor: sockman-scale-factor($size);
+      $values: append($values, calc(var(--spacing-unit) * #{$scale-factor}));
+    }
+    #{$property}: $values;
+  }
+
+}

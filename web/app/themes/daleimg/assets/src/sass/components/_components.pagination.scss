@@ -1,0 +1,58 @@
+.c-pagination {
+
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .screen-reader-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .page-numbers {
+    @include responsive-property(margin-left, small);
+    color: $color-link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .page-numbers.current {
+    color: color("black");
+  }
+
+  .page-numbers.dots {
+
+    &:hover {
+      color: $color-link;
+    }
+  }
+
+  .prev {
+
+    &::before {
+      @include responsive-property(margin-right, tiny);
+      content: "\003c";
+    }
+  }
+
+  .next {
+    &::after {
+      @include responsive-property(margin-left, tiny);
+      content: "\003e";
+    }
+  }
+}

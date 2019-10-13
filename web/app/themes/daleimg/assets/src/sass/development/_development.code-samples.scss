@@ -1,0 +1,16 @@
+pre {
+  background: #f7f7f7;
+  tab-size: 4;
+  overflow-x: auto;
+
+
+  @include responsive-properties((
+    padding: small normal
+  ));
+}
+
+:not(pre) > code {
+    background: #f7f7f7;
+    padding: 4px 2px;
+    word-break: break-word;
+}

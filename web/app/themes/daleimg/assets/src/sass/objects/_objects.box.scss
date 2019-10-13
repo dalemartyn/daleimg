@@ -1,0 +1,48 @@
+/* ==========================================================================
+   #BOX
+   ========================================================================== */
+
+/**
+ * The box object simply boxes off content. Extend with cosmetic styles in the
+ * Components layer.
+ *
+ * 1. So we can apply the `.o-box` class to naturally-inline elements.
+ */
+
+.o-box {
+  @include sockman-clearfix();
+  display: block; /* [1] */
+  @include responsive-property(padding);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+
+
+
+
+/* Size variants.
+   ========================================================================== */
+
+.o-box--flush {
+  padding: 0;
+}
+
+.o-box--tiny {
+  @include responsive-property(padding, tiny);
+}
+
+.o-box--small {
+  @include responsive-property(padding, small);
+}
+
+.o-box--large {
+  @include responsive-property(padding, large);
+}
+
+.o-box--huge {
+  @include responsive-property(padding, huge);
+}

@@ -1,0 +1,25 @@
+///* ========================================================================
+//   #CONFIG
+//   ======================================================================== */
+
+// A map of global config settings. Define any project-level configuration,
+// feature switches, etc. in here.
+
+$sockman-config: (
+  env: prod,
+  healthcheck: false,
+  debug: true,
+  css-grid: true,
+);
+
+// You can access data in this map using the following function:
+//
+// sockman-config(<key>)
+//
+// Example usage:
+//
+// @if (sockman-config(debug) == true) { ...  }
+
+@function sockman-config($key) {
+  @return map-get($sockman-config, $key);
+}

@@ -1,0 +1,7 @@
+{
+  "phpcs.standard": "WordPress",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#26A69A",
+    "titleBar.activeForeground": "#000"
+  }
+}

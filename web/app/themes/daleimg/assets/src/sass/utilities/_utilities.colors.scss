@@ -1,0 +1,29 @@
+/* ==========================================================================
+   #COLORS
+   ========================================================================== */
+
+/**
+ * Utility classes to help us use colors in our templates.
+ * Iterates over the color palette in our settings.
+ *
+ *   .u-color-white {}
+ */
+
+@each $color-name, $color in $palette {
+
+  .u-color-#{$color-name} {
+    color: $color;
+  }
+
+}
+
+/**
+ * Background color utilities.
+ */
+@each $color-name, $color in $palette {
+
+  .u-bg-color-#{$color-name} {
+    background-color: $color;
+  }
+
+}
