@@ -26,9 +26,7 @@ module.exports = function(assetsPath) {
         precision: 8
       }).on('error', sass.logError))
       .pipe(postcss([
-        autoprefixer({
-          browsers: ['last 2 versions']
-        }),
+        autoprefixer(),
       ]))
       .pipe(rename(function(path) {
         path.dirname = '';
