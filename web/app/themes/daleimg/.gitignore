@@ -1,5 +1,4 @@
 vendor
 wp-content
 node_modules
-assets/dist
 .DS_Store

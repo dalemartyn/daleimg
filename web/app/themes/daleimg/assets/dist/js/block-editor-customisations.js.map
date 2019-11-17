@@ -1,0 +1,1 @@
+{"version":3,"file":"block-editor-customisations.js","sources":["../../src/js/block-editor-customisations.js"],"sourcesContent":["/**\n * admin.js.\n */\n\nwp.domReady(() => {\n  // wp.blocks.unregisterBlockStyle('core/quote', 'large');\n});\n"],"names":["wp","domReady"],"mappings":"yBAIAA,GAAGC,UAAS"}

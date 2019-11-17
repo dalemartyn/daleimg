@@ -104,5 +104,5 @@ end
 # Note that you need to have WP-CLI installed on your server
 # Uncomment the following line to run it on deploys if needed
 after 'deploy:updated', 'deploy:update_option_paths'
-after 'deploy:updated', 'deploy:build_assets'
+#after 'deploy:updated', 'deploy:build_assets'
 # after 'deploy:published', 'deploy:upload_manual_plugins'
