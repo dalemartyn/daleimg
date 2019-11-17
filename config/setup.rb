@@ -117,7 +117,7 @@ namespace :setup do
     end
     on roles(:db) do
       upload! sql_filename, "/tmp/#{sql_filename}"
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' #{fetch(:db_name)} < /tmp/#{sql_filename}"
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' #{fetch(:db_name)} < /tmp/#{sql_filename}"
     end
     run_locally do
       execute :rm, sql_filename
@@ -144,7 +144,7 @@ namespace :setup do
   desc "copy the staging database to current stage using wp cli migratedb export"
   task :copy_staging_db do |t|
     sql_filename = "#{fetch(:application)}_#{fetch(:stage)}.sql"
-    find_str = "//#{fetch(:application)}.adozeneggs.co.uk"
+    find_str = "//#{fetch(:application)}.dalemartyn.co.uk"
     replace_str = "//#{fetch(:nginx_domain)}"
     on roles(:app) do
       within "/var/www/vhosts/#{fetch(:application)}/staging/current" do
@@ -152,7 +152,7 @@ namespace :setup do
       end
     end
     on roles(:db) do
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' #{fetch(:db_name)} < /tmp/#{sql_filename}"
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' #{fetch(:db_name)} < /tmp/#{sql_filename}"
     end
   end
 
@@ -167,22 +167,22 @@ namespace :setup do
   desc "create database user"
   task :create_db_user do |t|
     on roles(:db) do
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' -e \"CREATE USER '#{fetch(:db_user)}'@'localhost' IDENTIFIED BY '#{fetch(:db_password)}'\""
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' -e \"CREATE USER '#{fetch(:db_user)}'@'localhost' IDENTIFIED BY '#{fetch(:db_password)}'\""
     end
   end
 
   desc "drop database user"
   task :drop_db_user do |t|
     on roles(:db) do
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' -e \"DROP USER IF EXISTS '#{fetch(:db_user)}'@'localhost'\""
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' -e \"DROP USER IF EXISTS '#{fetch(:db_user)}'@'localhost'\""
     end
   end
 
   desc "create database"
   task :create_db do |t|
     on roles(:db) do
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' -e \"CREATE DATABASE IF NOT EXISTS #{fetch(:db_name)}\""
-      execute :mysql, "-u adozeneggs --password='#{fetch(:master_db_password)}' -e \"GRANT ALL PRIVILEGES ON  #{fetch(:db_name)}.* TO #{fetch(:db_user)}@localhost;\""
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' -e \"CREATE DATABASE IF NOT EXISTS #{fetch(:db_name)}\""
+      execute :mysql, "-u dalemartyn --password='#{fetch(:master_db_password)}' -e \"GRANT ALL PRIVILEGES ON  #{fetch(:db_name)}.* TO #{fetch(:db_user)}@localhost;\""
     end
   end
 

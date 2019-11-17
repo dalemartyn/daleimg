@@ -20,7 +20,7 @@ set :linked_files, fetch(:linked_files, []).push('.env')
 set :linked_dirs, fetch(:linked_dirs, []).push('web/app/uploads')
 
 set :nvm_type, :user # or :system, depends on your nvm setup
-set :nvm_node, 'v8.16.0'
+set :nvm_node, 'v12.13.0'
 set :nvm_map_bins, %w{node npm yarn}
 
 # for setup task

@@ -18,7 +18,7 @@ set :nginx_domain, -> { "img.dalestillman.com" }
 
 # Extended Server Syntax
 # ======================
-server 'dalwhinnie', roles: %w{web app db}, user: 'adozeneggs'
+server 'img', roles: %w{web app db}, user: 'dalemartyn'
 
 
 
