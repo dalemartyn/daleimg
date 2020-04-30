@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "sass-mq": "^5.0.1",
     "smoothscroll-polyfill": "^0.4.3"
   },
